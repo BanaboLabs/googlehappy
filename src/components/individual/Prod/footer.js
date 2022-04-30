@@ -4,7 +4,7 @@ import logoblack from "../../../images/banabologoblack.svg";
 import logogrid from "../../../images/logogridnew.svg";
 import gdpr from "../../../images/gdpr.svg";
 import useMediaQuery from "../../../hooks/useMediaQuery";
-
+import { Link } from "gatsby";
 export default function Footer() {
   const isDesktop = useMediaQuery("(min-width: 1200px)");
   return (
@@ -23,25 +23,8 @@ export default function Footer() {
                   <CopyrightText>
                     Copyright Banabo Labs Inc. 2022. All rights reserved
                   </CopyrightText>
-                  <CopyrightText2
-                    onClick={() =>
-                      window.open(
-                        "https://www.banabo.io/privacy-policy/",
-                        "_self"
-                      )
-                    }
-                  >
-                    Privacy Policy
-                  </CopyrightText2>
-                  <CopyrightText2
-                    onClick={() =>
-                      window.open(
-                        "https://www.banabo.io/terms-of-service/",
-                        "_self"
-                      )
-                    }
-                  >
-                    Terms of Service
+                  <CopyrightText2>
+                    <Link to="/privacy-policy">Privacy Policy</Link>
                   </CopyrightText2>
                 </SmallVStack>
               </TopParent>
