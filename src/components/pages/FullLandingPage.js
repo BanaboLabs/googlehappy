@@ -832,6 +832,7 @@ const H1Text = styled.div`
   font-size: 26px;
   color: #ffffff;
   font-family: "ProximaNovaBold";
+  padding-bottom: 30px;
 `;
 
 const BorderBoxWhite = styled.button`
