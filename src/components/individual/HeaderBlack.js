@@ -30,7 +30,7 @@ export default function HeaderBlack() {
               </MobileHidden>
               <MobileHidden>
                 <StyledLink to="/contact">
-                  <TabItem>Contact</TabItem>
+                  <TabItem>Contact </TabItem>
                 </StyledLink>
               </MobileHidden>
             </SubGroup2>
@@ -38,7 +38,7 @@ export default function HeaderBlack() {
           <SubGroup2>
             <MobileHidden>
               <StyledLink to="https://app.banabo.io/login">
-                <TabItem>Login</TabItem>
+                <TabItem> </TabItem>
               </StyledLink>
             </MobileHidden>
             <StyledLink to="/landing">
