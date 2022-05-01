@@ -13,6 +13,7 @@ import GoogleAPISignUp from "./signup/oauth/googleAPI";
 import signinwithgoogleprod from "../../images/signinwithgoogleprod.svg";
 import signinwithmicrosoftprod from "../../images/signinwithmicrosoftprod.svg";
 import banaboLogo from "../../images/banabologo.svg";
+import { Link } from "gatsby";
 var moment = require("moment");
 
 export default function FullLandingPage() {
@@ -306,6 +307,15 @@ export default function FullLandingPage() {
               />
             </Background1>
             <Background2>
+              <SmallVVStack>
+                <LogoHStack></LogoHStack>
+                <CopyrightText>
+                  Copyright Banabo Labs Inc. 2022. All rights reserved
+                </CopyrightText>
+                <CopyrightText2>
+                  <Link to="/privacy-policy">Privacy Policy</Link>
+                </CopyrightText2>
+              </SmallVVStack>
               {submitted == false ? (
                 <ParentVStack>
                   <H1Text>Lets Get Started</H1Text>
@@ -400,6 +410,36 @@ export default function FullLandingPage() {
   );
 }
 
+const CopyrightText = styled.div`
+  font-family: "ProximaNovaSemibold";
+  font-size: 16px;
+  color: #ffffff;
+  @media (max-width: 1200px) {
+    padding-right: 100px;
+    width: 400px;
+    text-align: left;
+  }
+`;
+
+const BanaboText = styled.div`
+  font-size: 26px;
+  line-height: 32px;
+  color: #252531;
+  font-family: "ProximaNovaBold";
+`;
+
+const CopyrightText2 = styled.div`
+  font-family: "ProximaNovaSemibold";
+  font-size: 16px;
+  color: #ffffff;
+  cursor: pointer;
+  @media (max-width: 1200px) {
+    padding-right: 100px;
+    width: 400px;
+    text-align: left;
+  }
+`;
+
 const Wrapper = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
@@ -419,6 +459,28 @@ const ContentWrapper = styled.div`
   @media (max-width: 900px) {
     display: grid;
   }
+`;
+
+const LogoHStack = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  @media (max-width: 1200px) {
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+  }
+`;
+
+const SmallVVStack = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: left;
+  align-items: left;
+  padding-top: 800px;
+  padding-left: 100px;
 `;
 
 const Form = styled.form`
