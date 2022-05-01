@@ -700,7 +700,7 @@ const Rectangle2 = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 3vh;
-  padding-right: 14vh;
+  padding-right: 4vh;
 `;
 
 const WhiteText = styled.div`
