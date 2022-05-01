@@ -27,7 +27,7 @@ export default function FullLandingPage() {
   // Google Variables
   const google_client_id =
     "914021793896-2hmcu558rif86gri6n8sl43g28177n6r.apps.googleusercontent.com"; // Banabo - API APP ID
-  const google_redirect_uri = "https://application.banabo.io/login/";
+  const google_redirect_uri = "https://www.banabo.org/login/";
   const google_state = "foobargoogle";
   const google_response_type = "code";
   const google_scope = "email profile";
@@ -61,6 +61,23 @@ export default function FullLandingPage() {
       if (stateValue == "foobargoogle") {
         console.log("ran1");
         GoogleAPISignUp(authCode);
+      }
+    } else {
+      console.log("No Code");
+    }
+
+    if (window.location.href.includes("code")) {
+      const params = new Proxy(new URLSearchParams(window.location.search), {
+        // @ts-ignore
+        get: (searchParams, prop) => searchParams.get(prop),
+      });
+      // @ts-ignore
+      let authCode = params.code;
+      // @ts-ignore
+      let stateValue = params.state;
+      if (stateValue == "foobargoogle") {
+        console.log("ran2");
+        setRender(2);
       }
     } else {
       console.log("No Code");
@@ -161,137 +178,163 @@ export default function FullLandingPage() {
             <Background2>
               {submitted == false ? (
                 <ParentVStack>
-                  <H1Text>Lets Get Started</H1Text>
-                  <InsideVStack>
-                    <AuthVStack>
-                      <ButtonIMG
-                        src={signinwithgoogleprod}
-                        onClick={() =>
-                          window.open(
-                            `https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?nonce=12345&access_type=${google_access_type}&client_id=${google_client_id}&scope=${google_scope}&redirect_uri=${google_redirect_uri}&state=${google_state}&response_type=${google_response_type}`,
-                            "_self"
-                          )
-                        }
-                      />
-                      <ButtonIMG
-                        src={signinwithmicrosoftprod}
-                        onClick={() =>
-                          window.open(
-                            `https://login.microsoftonline.com/common/oauth2/v2.0/authorize/?client_id=${microsoft_client_id}&response_type=${microsoft_response_type}&redirect_uri=${microsoft_redirect_uri}&scope=${microsoft_scope}&state=${microsoft_state}`,
-                            "_self"
-                          )
-                        }
-                      />
-                    </AuthVStack>
-                    <HStackOr>
-                      <OrRectangle />
-                      <MainText>Or</MainText>
-                      <OrRectangle />
-                    </HStackOr>
-                    <SmallVStack>
-                      <TextInputVStack>
-                        <TextInputRegularText>
-                          Email Address
-                        </TextInputRegularText>
-                        <form onSubmit={noRefresh}>
-                          <InputRectangle>
-                            <Input placeholder="" />
-                          </InputRectangle>
-                        </form>
-                      </TextInputVStack>
-                      <TextInputVStack>
-                        <TextInputRegularText>Password</TextInputRegularText>
-                        <form onSubmit={noRefresh}>
-                          <InputRectangle>
-                            <Input placeholder="" type="password" />
-                          </InputRectangle>
-                        </form>
-                      </TextInputVStack>
-                    </SmallVStack>
-                    <SubmitButton
-                      getStartedButtonActive={getStartedButtonActive}
-                    >
-                      {spinnerActivated ? (
-                        <div></div>
-                      ) : (
-                        <ButtonHStack>
-                          <ButtonText
-                            getStartedButtonActive={getStartedButtonActive}
-                          >
-                            Get Started
-                          </ButtonText>
-                          <ButtonWhiteArrowWrapper></ButtonWhiteArrowWrapper>
-                        </ButtonHStack>
-                      )}
-                    </SubmitButton>
-                  </InsideVStack>
+                  {render == 2 ? (
+                    <Rectangle2>
+                      <WhiteText>
+                        Our team will send an email once your account is setup
+                        in the next 24 hours
+                      </WhiteText>
+                    </Rectangle2>
+                  ) : (
+                    <div>
+                      <H1Text>Lets Get Started</H1Text>
+                      <InsideVStack>
+                        <AuthVStack>
+                          <ButtonIMG
+                            src={signinwithgoogleprod}
+                            onClick={() =>
+                              window.open(
+                                `https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?nonce=12345&access_type=${google_access_type}&client_id=${google_client_id}&scope=${google_scope}&redirect_uri=${google_redirect_uri}&state=${google_state}&response_type=${google_response_type}`,
+                                "_self"
+                              )
+                            }
+                          />
+                          <ButtonIMG
+                            src={signinwithmicrosoftprod}
+                            onClick={() =>
+                              window.open(
+                                `https://login.microsoftonline.com/common/oauth2/v2.0/authorize/?client_id=${microsoft_client_id}&response_type=${microsoft_response_type}&redirect_uri=${microsoft_redirect_uri}&scope=${microsoft_scope}&state=${microsoft_state}`,
+                                "_self"
+                              )
+                            }
+                          />
+                        </AuthVStack>
+                        <HStackOr>
+                          <OrRectangle />
+                          <MainText>Or</MainText>
+                          <OrRectangle />
+                        </HStackOr>
+                        <SmallVStack>
+                          <TextInputVStack>
+                            <TextInputRegularText>
+                              Email Address
+                            </TextInputRegularText>
+                            <form onSubmit={noRefresh}>
+                              <InputRectangle>
+                                <Input placeholder="" />
+                              </InputRectangle>
+                            </form>
+                          </TextInputVStack>
+                          <TextInputVStack>
+                            <TextInputRegularText>
+                              Password
+                            </TextInputRegularText>
+                            <form onSubmit={noRefresh}>
+                              <InputRectangle>
+                                <Input placeholder="" type="password" />
+                              </InputRectangle>
+                            </form>
+                          </TextInputVStack>
+                        </SmallVStack>
+                        <SubmitButton
+                          getStartedButtonActive={getStartedButtonActive}
+                        >
+                          {spinnerActivated ? (
+                            <div></div>
+                          ) : (
+                            <ButtonHStack>
+                              <ButtonText
+                                getStartedButtonActive={getStartedButtonActive}
+                              >
+                                Get Started
+                              </ButtonText>
+                              <ButtonWhiteArrowWrapper></ButtonWhiteArrowWrapper>
+                            </ButtonHStack>
+                          )}
+                        </SubmitButton>
+                      </InsideVStack>{" "}
+                    </div>
+                  )}
                 </ParentVStack>
               ) : (
                 <ParentVStack>
-                  <H1Text>Lets Get Started</H1Text>
-                  <InsideVStack>
-                    <AuthVStack>
-                      <ButtonIMG
-                        src={signinwithgoogleprod}
-                        onClick={() =>
-                          window.open(
-                            `https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?nonce=12345&access_type=${google_access_type}&client_id=${google_client_id}&scope=${google_scope}&redirect_uri=${google_redirect_uri}&state=${google_state}&response_type=${google_response_type}`,
-                            "_self"
-                          )
-                        }
-                      />
-                      <ButtonIMG
-                        src={signinwithmicrosoftprod}
-                        onClick={() =>
-                          window.open(
-                            `https://login.microsoftonline.com/common/oauth2/v2.0/authorize/?client_id=${microsoft_client_id}&response_type=${microsoft_response_type}&redirect_uri=${microsoft_redirect_uri}&scope=${microsoft_scope}&state=${microsoft_state}`,
-                            "_self"
-                          )
-                        }
-                      />
-                    </AuthVStack>
-                    <HStackOr>
-                      <OrRectangle />
-                      <MainText>Or</MainText>
-                      <OrRectangle />
-                    </HStackOr>
-                    <SmallVStack>
-                      <TextInputVStack>
-                        <TextInputRegularText>
-                          Email Address
-                        </TextInputRegularText>
-                        <form onSubmit={noRefresh}>
-                          <InputRectangle>
-                            <Input placeholder="" />
-                          </InputRectangle>
-                        </form>
-                      </TextInputVStack>
-                      <TextInputVStack>
-                        <TextInputRegularText>Password</TextInputRegularText>
-                        <form onSubmit={noRefresh}>
-                          <InputRectangle>
-                            <Input placeholder="" type="password" />
-                          </InputRectangle>
-                        </form>
-                      </TextInputVStack>
-                    </SmallVStack>
-                    <SubmitButton
-                      getStartedButtonActive={getStartedButtonActive}
-                    >
-                      {spinnerActivated ? (
-                        <div></div>
-                      ) : (
-                        <ButtonHStack>
-                          <ButtonText
-                            getStartedButtonActive={getStartedButtonActive}
-                          >
-                            Get Started
-                          </ButtonText>
-                          <ButtonWhiteArrowWrapper></ButtonWhiteArrowWrapper>
-                        </ButtonHStack>
-                      )}
-                    </SubmitButton>
-                  </InsideVStack>
+                  {render == 2 ? (
+                    <Rectangle2>
+                      <WhiteText>
+                        Our team will send an email once your account is setup
+                        in the next 24 hours
+                      </WhiteText>
+                    </Rectangle2>
+                  ) : (
+                    <div>
+                      <H1Text>Lets Get Started</H1Text>
+                      <InsideVStack>
+                        <AuthVStack>
+                          <ButtonIMG
+                            src={signinwithgoogleprod}
+                            onClick={() =>
+                              window.open(
+                                `https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?nonce=12345&access_type=${google_access_type}&client_id=${google_client_id}&scope=${google_scope}&redirect_uri=${google_redirect_uri}&state=${google_state}&response_type=${google_response_type}`,
+                                "_self"
+                              )
+                            }
+                          />
+                          <ButtonIMG
+                            src={signinwithmicrosoftprod}
+                            onClick={() =>
+                              window.open(
+                                `https://login.microsoftonline.com/common/oauth2/v2.0/authorize/?client_id=${microsoft_client_id}&response_type=${microsoft_response_type}&redirect_uri=${microsoft_redirect_uri}&scope=${microsoft_scope}&state=${microsoft_state}`,
+                                "_self"
+                              )
+                            }
+                          />
+                        </AuthVStack>
+                        <HStackOr>
+                          <OrRectangle />
+                          <MainText>Or</MainText>
+                          <OrRectangle />
+                        </HStackOr>
+                        <SmallVStack>
+                          <TextInputVStack>
+                            <TextInputRegularText>
+                              Email Address
+                            </TextInputRegularText>
+                            <form onSubmit={noRefresh}>
+                              <InputRectangle>
+                                <Input placeholder="" />
+                              </InputRectangle>
+                            </form>
+                          </TextInputVStack>
+                          <TextInputVStack>
+                            <TextInputRegularText>
+                              Password
+                            </TextInputRegularText>
+                            <form onSubmit={noRefresh}>
+                              <InputRectangle>
+                                <Input placeholder="" type="password" />
+                              </InputRectangle>
+                            </form>
+                          </TextInputVStack>
+                        </SmallVStack>
+                        <SubmitButton
+                          getStartedButtonActive={getStartedButtonActive}
+                        >
+                          {spinnerActivated ? (
+                            <div></div>
+                          ) : (
+                            <ButtonHStack>
+                              <ButtonText
+                                getStartedButtonActive={getStartedButtonActive}
+                              >
+                                Get Started
+                              </ButtonText>
+                              <ButtonWhiteArrowWrapper></ButtonWhiteArrowWrapper>
+                            </ButtonHStack>
+                          )}
+                        </SubmitButton>
+                      </InsideVStack>
+                    </div>
+                  )}
                 </ParentVStack>
               )}
             </Background2>
