@@ -26,11 +26,11 @@ export default function FullLandingPage() {
 
   // Google Variables
   const google_client_id =
-    "914021793896-ri83q4agqaag5tglc98h11tkcf7t9ai1.apps.googleusercontent.com"; // Banabo - API APP ID
+    "914021793896-2hmcu558rif86gri6n8sl43g28177n6r.apps.googleusercontent.com"; // Banabo - API APP ID
   const google_redirect_uri = "https://www.banabo.org/landing/";
   const google_state = "foobargoogle";
   const google_response_type = "code";
-  const google_scope = "email profile";
+  const google_scope = "email profile adwords";
   const google_access_type = "offline";
   //
   //
