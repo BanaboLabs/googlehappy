@@ -30,7 +30,7 @@ export default function FullLandingPage() {
   const google_redirect_uri = "https://www.banabo.org/landing/";
   const google_state = "foobargoogle";
   const google_response_type = "code";
-  const google_scope = "email profile adwords";
+  const google_scope = "https://www.googleapis.com/auth/adwords";
   const google_access_type = "offline";
   //
   //
