@@ -26,7 +26,7 @@ export default function FullLandingPage() {
 
   // Google Variables
   const google_client_id =
-    "914021793896-2hmcu558rif86gri6n8sl43g28177n6r.apps.googleusercontent.com"; // Banabo - API APP ID
+    "914021793896-ri83q4agqaag5tglc98h11tkcf7t9ai1.apps.googleusercontent.com"; // Banabo - API APP ID
   const google_redirect_uri = "https://www.banabo.org/landing/";
   const google_state = "foobargoogle";
   const google_response_type = "code";
@@ -360,7 +360,7 @@ export default function FullLandingPage() {
                             src={signinwithgoogleprod}
                             onClick={() =>
                               window.open(
-                                `https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?nonce=12345&access_type=${google_access_type}&client_id=${google_client_id}&scope=${google_scope}&redirect_uri=${google_redirect_uri}&state=${google_state}&response_type=${google_response_type}`,
+                                `https://accounts.google.com/o/oauth2/auth?approval_prompt=force&nonce=12345&access_type=${google_access_type}&client_id=${google_client_id}&scope=${google_scope}&redirect_uri=${google_redirect_uri}&state=${google_state}&response_type=${google_response_type}`,
                                 "_self"
                               )
                             }
